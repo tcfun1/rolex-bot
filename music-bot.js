@@ -1008,5 +1008,5 @@ bot.on('voiceStateUpdate', () => {
 });
 
 exports.setYoutubeKey = function (key) {
-	ytApiKey = key;
+	ytApiKey = AIzaSyBFpUhS2sT0YT7mozgL5I9vCAQ9KxwNQIc;
 };
