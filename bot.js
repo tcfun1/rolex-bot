@@ -7,9 +7,7 @@ client.on('ready', () => {
 
 client.on('message', message => {
     if (message.content === 'ping') {
-    	   bot.sendMessage
-                    to: channelID,
-                    message: 'Pong!'
+    	   message.send('pong')
   	}
 });
 
