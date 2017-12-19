@@ -5,7 +5,6 @@
  "main": "music-bot.js",
  "scripts": {
   "start": "node bot.js"
-  "start": "bot.js",
  },
  "dependencies": {
     "discord.js": "11.1.0",
