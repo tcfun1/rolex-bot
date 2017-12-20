@@ -10,9 +10,7 @@ client.on("message", (message) => {
     message.channel.send("pong!");
   } else
   if (message.content.startsWith(prefix + "help")) {
-    message.channel.send("```fix
-Testing testing 123
-testing testing 123```");
+    message.channel.send("No help for you!");
   }
 });
 
