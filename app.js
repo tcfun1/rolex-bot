@@ -133,6 +133,7 @@ client.on("message", async message => {
     // So we get our messages, and delete them. Simple enough, right?
     const fetched = await message.channel.fetchMessages(deleteCount);
     message.channel.bulkDelete(deleteCount)
+    message.channel.sendMessage("Deletion of messages successful. Total messages deleted: deleteCount);
       .catch(error => message.reply(`Couldn't delete messages because of: ${error}`));
   }
 });
