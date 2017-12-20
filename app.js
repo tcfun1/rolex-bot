@@ -117,24 +117,40 @@ client.on("message", async message => {
     message.reply(`${member.user.tag} has been banned by ${message.author.tag} because: ${reason}`);
   }
   
-  if(command === "purge") {
-    // This command removes all messages from all users in the channel, up to 100.
-    
-    // get the delete count, as an actual number.
-    const deleteCount = parseInt(args[0], 10);
-    
-    //Rank needed to purge and response if not the right rank
-    if(!message.member.roles.some(r=>["God"].includes(r.name)) )
-      return message.reply("Sorry, you don't have permissions to use this!");
-    
-    // Ooooh nice, combined conditions. <3
+const PURGE = ',purge';
+  
+      if (message.content == PURGE) {
+
+      // Check the following permissions before deleting messages:
+      //    1. Check if the user has enough permissions
+      //    2. Check if I have the permission to execute the command
+
+      if (!message.channel.permissionsFor(message.author).hasPermission("MANAGE_MESSAGES")) {
+        message.channel.sendMessage("Sorry, you don't have the permission to execute the command \""+message.content+"\"");
+        console.log("Sorry, you don't have the permission to execute the command \""+message.content+"\"");
+        return;
+      } else if (!message.channel.permissionsFor(bot.user).hasPermission("MANAGE_MESSAGES")) {
+        message.channel.sendMessage("Sorry, I don't have the permission to execute the command \""+message.content+"\"");
+        console.log("Sorry, I don't have the permission to execute the command \""+message.content+"\"");
+        return;
+      }
+
+          // Ooooh nice, combined conditions. <3
     if(!deleteCount || deleteCount < 2 || deleteCount > 100)
       return message.reply("Please provide a number between 2 and 100 for the number of messages to delete");
-    
-    // So we get our messages, and delete them. Simple enough, right?
-    const fetched = await message.channel.fetchMessages({count : deleteCount});
-    message.channel.regularDelete(fetched)
-      .catch(error => message.reply(`Couldn't delete messages because of: ${error}`));
+        
+      // Only delete messages if the channel type is TextChannel
+      // DO NOT delete messages in DM Channel or Group DM Channel
+      if (message.channel.type == 'text') {
+        message.channel.fetchMessages()
+          .then(messages => {
+            message.channel.bulkDelete(messages);
+            messagesDeleted = messages.array().length; // number of messages deleted
+           .catch(error => message.reply(`Couldn't delete messages because of: ${error}`));
+   
+      //log deleted messages
+     message.channel.sendMessage("Deletion of messages successful. Total messages deleted: "+messagesDeleted);
+            console.log('Deletion of messages successful. Total messages deleted: '+messagesDeleted)
   }
 });
 
