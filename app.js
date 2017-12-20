@@ -186,4 +186,4 @@ bot.on('ready', () => {
   });
 });
 
-client.login(config.token);
+bot.login(token);
