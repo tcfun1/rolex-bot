@@ -123,13 +123,17 @@ client.on("message", async message => {
     // get the delete count, as an actual number.
     const deleteCount = parseInt(args[0], 10);
     
+    //Rank needed to purge and response if not the right rank
+    if(!message.member.roles.some(r=>["God"].includes(r.name)) )
+      return message.reply("Sorry, you don't have permissions to use this!");
+    
     // Ooooh nice, combined conditions. <3
     if(!deleteCount || deleteCount < 2 || deleteCount > 100)
       return message.reply("Please provide a number between 2 and 100 for the number of messages to delete");
     
     // So we get our messages, and delete them. Simple enough, right?
     const fetched = await message.channel.fetchMessages({count: deleteCount});
-    message.channel.bulkDelete(fetched)
+    message.channel.Delete(fetched)
       .catch(error => message.reply(`Couldn't delete messages because of: ${error}`));
   }
 });
