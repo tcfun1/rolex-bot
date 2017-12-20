@@ -12,10 +12,6 @@ client.on("message", (message) => {
   if (message.content.startsWith(prefix + "help")) {
     message.channel.send("No help for you!");
   }
-  if (message.content.startsWith("pleb")) {
-      message.delete(1000); //Supposed to delete message
-      message.channel.send(How dare you));
-   }
 });
  
 // THIS  MUST  BE  THIS  WAY
