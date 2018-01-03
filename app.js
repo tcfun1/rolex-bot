@@ -19,6 +19,12 @@ client.on("ready", () => {
   client.user.setGame(`on ${client.guilds.size} servers`);
 });
 
+client.on('message', msg => {
+    const guildTag = msg.channel.type === 'text' ? `[${msg.guild.name}]` : '[DM]';
+    const channelTag = msg.channel.type === 'text' ? `[#${msg.channel.name}]` : '';
+    console.log(`${guildTag}${channelTag} ${msg.author.tag}: ${msg.content}`);
+  });
+
 client.on("guildCreate", guild => {
   // This event triggers when the bot joins a guild.
   console.log(`New guild joined: ${guild.name} (id: ${guild.id}). This guild has ${guild.memberCount} members!`);
