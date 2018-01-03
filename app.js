@@ -25,6 +25,16 @@ client.on("guildCreate", guild => {
   client.user.setGame(`on ${client.guilds.size} servers`);
 });
 
+// Create an event listener for new guild members
+client.on('guildMemberAdd', member => {
+  // Send the message to a designated channel on a server:
+  const channel = member.guild.channels.find('name', 'ranger-hub');
+  // Do nothing if the channel wasn't found on this server
+  if (!channel) return;
+  // Send the message, mentioning the member
+  channel.send(`Welcome to the Skull Ranger Productions discord server, ${member}. Make sure to check out #welcome before you settle in`);
+});
+
 client.on("guildDelete", guild => {
   // this event triggers when the bot is removed from a guild.
   console.log(`I have been removed from: ${guild.name} (id: ${guild.id})`);
