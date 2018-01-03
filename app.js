@@ -51,13 +51,10 @@ client.on("message", async message => {
   const command = args.shift().toLowerCase();
   
   // Let's go with a few common example commands! Feel free to delete or change those.
-  
-  // Create an event listener for messages
-client.on('message', message => {
-  // If the message is "what is my avatar"
-  if (message.content === 'what is my avatar') {
+ 
+  if (command === "avatar") {
     // Send the user's avatar URL
-    message.reply(message.author.avatarURL);
+    message.channel.send(message.author.avatarURL);
   }
 });
   
