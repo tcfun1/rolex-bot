@@ -56,7 +56,6 @@ client.on("message", async message => {
     // Send the user's avatar URL
     message.channel.send(message.author.avatarURL);
   }
-});
   
   if(command === "ping") {
     // Calculates ping between sending a message and editing it, giving a nice round-trip latency.
