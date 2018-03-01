@@ -75,7 +75,7 @@ client.on("message", async message => {
   
   if (command === "help") {
     // Send the user help commands
-    message.channel.send("```fix/n,help - Pulls up this help menu/n,avatar - Sends your avatar in chat/n,ping - Says how long the ping is for the bot")
+    message.channel.send("```fix/n,help - Pulls up this help menu/n,avatar - Sends your avatar in chat/n,ping - Says how long the ping is for the bot/n```")
   }
   
   if(command === "ping") {
