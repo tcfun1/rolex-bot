@@ -1,5 +1,3 @@
-var commands = fs.ReadFileSync(rolex-bot/commands.txt)
-
 // Load up the discord.js library
 const Discord = require("discord.js");
 
