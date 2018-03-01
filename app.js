@@ -73,9 +73,7 @@ client.on("message", async message => {
     message.channel.send(message.author.avatarURL);
   }
   if (command === "help") {
-     let member = message.mentions.members.first();
-    if(!member)
-      return message.reply(Test)
+     message.channel.send(Testing)
   }
   
   if(command === "ping") {
