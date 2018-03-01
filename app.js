@@ -76,6 +76,7 @@ client.on("message", async message => {
   if (command === "help") {
     // Send the user help commands
     message.channel.send("Test")
+  }
   
   if(command === "ping") {
     // Calculates ping between sending a message and editing it, giving a nice round-trip latency.
