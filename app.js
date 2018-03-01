@@ -1,3 +1,5 @@
+var commands = fs.ReadFileSync(rolex-bot/commands.txt)
+
 // Load up the discord.js library
 const Discord = require("discord.js");
 
@@ -73,7 +75,7 @@ client.on("message", async message => {
     message.channel.send(message.author.avatarURL);
   }
   if (command === "help") {
-     message.channel.send(Testing)
+     message.channel.send(`Testing`)
   }
   
   if(command === "ping") {
