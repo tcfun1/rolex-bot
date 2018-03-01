@@ -34,11 +34,11 @@ client.on("guildCreate", guild => {
 // Create an event listener for new guild members
 client.on('guildMemberAdd', member => {
   // Send the message to a designated channel on a server:
-  const channel = member.guild.channels.find('name', 'ranger-hub');
+  const channel = member.guild.channels.find('general');
   // Do nothing if the channel wasn't found on this server
   if (!channel) return;
   // Send the message, mentioning the member
-  channel.send(`Welcome to the Skull Ranger Productions discord server, ${member}. Make sure to check out #welcome before you settle in`);
+  channel.send("Welcome to the Elite Crusaders discord server, ${member}. Make sure to check out <<Server Info>> category before you settle in");
 });
 
 client.on("guildDelete", guild => {
@@ -72,6 +72,10 @@ client.on("message", async message => {
     // Send the user's avatar URL
     message.channel.send(message.author.avatarURL);
   }
+  
+  if (command === "help") {
+    // Send the user help commands
+    message.channel.send("Test")
   
   if(command === "ping") {
     // Calculates ping between sending a message and editing it, giving a nice round-trip latency.
