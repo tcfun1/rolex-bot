@@ -76,6 +76,7 @@ client.on("message", async message => {
      let member = message.mentions.members.first();
     if(!member)
       return message.reply(Test)
+  }
   
   if(command === "ping") {
     // Calculates ping between sending a message and editing it, giving a nice round-trip latency.
