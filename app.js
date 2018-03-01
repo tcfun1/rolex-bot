@@ -75,7 +75,7 @@ client.on("message", async message => {
   
   if (command === "help") {
     // Send the user help commands
-    message.channel.send("Test")
+    message.channel.send("Test\n\nTwo lines down")
   }
   
   if(command === "ping") {
