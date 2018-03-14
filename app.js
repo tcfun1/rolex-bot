@@ -50,7 +50,7 @@ client.on("guildDelete", guild => {
 bot.on('ready', () => {
 bot.user.setStatus('Online')
 bot.user.setGame('Test')
-bot.user.setGame('Test', 'https://discord.gg/k29sBZx')
+bot.user.setGame('Test', 'https://www.twitch.tv/therealbaconnator')
 });
 
 client.on("message", async message => {
