@@ -85,6 +85,24 @@ client.on("message", async message => {
   }
 });
   
+  dispatcher.on('end', () => {
+  // The song has finished
+});
+
+dispatcher.on('error', e => {
+  // Catch any errors that may arise
+  console.log(e);
+});
+
+dispatcher.setVolume(0.5); // Set the volume to 50%
+dispatcher.setVolume(1); // Set the volume back to 100%
+
+console.log(dispatcher.time); // The time in milliseconds that the stream dispatcher has been playing for
+
+dispatcher.pause(); // Pause the stream
+dispatcher.resume(); // Carry on playing
+
+dispatcher.end(); // End the dispatcher, emits 'end' event
   // Let's go with a few common example commands! Feel free to delete or change those.
 
     if (command === "avatar") {
