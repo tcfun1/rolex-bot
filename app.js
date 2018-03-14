@@ -67,7 +67,7 @@ client.on("message", async message => {
   const command = args.shift().toLowerCase();
   
   const Discord = require('discord.js');
-const client = new Discord.Client();
+  const client = new Discord.Client();
 
 client.login('NDE4NDI5MTAxMTU0NTAwNjA4.DYri9A.pwxscCmBr82KDzp-h3yxnRUweRo');
   
