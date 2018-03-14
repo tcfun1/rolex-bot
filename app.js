@@ -47,10 +47,10 @@ client.on("guildDelete", guild => {
   client.user.setGame(`on ${client.guilds.size} servers`);
   
 });
-bot.on('ready', () => {
-bot.user.setStatus('Online')
-bot.user.setGame('Test')
-bot.user.setGame('Test', 'https://www.twitch.tv/therealbaconnator')
+bot.on("ready", () => {
+bot.user.setStatus("Online")
+bot.user.setGame("Test")
+bot.user.setGame("Test", "https://www.twitch.tv/therealbaconnator")
 });
 
 client.on("message", async message => {
