@@ -76,7 +76,7 @@ client.login('NDE4NDI5MTAxMTU0NTAwNjA4.DYri9A.pwxscCmBr82KDzp-h3yxnRUweRo');
   // we ignore it
   if (!message.guild) return;
 
-  if (message.content === 'join') {
+  if (message.content === ',join') {
     // Only try to join the sender's voice channel if they are in one themselves
     if (message.member.voiceChannel) {
       message.member.voiceChannel.join()
