@@ -19,10 +19,6 @@ client.on("ready", () => {
   client.user.setGame(`on ${client.guilds.size} servers`);
 });
  
-client.on('ready', () => {
- client.user.setActivity('to tutorials', { type: "LISTENING" });
-});
-
 client.on('message', msg => {
     const guildTag = msg.channel.type === 'text' ? `[${msg.guild.name}]` : '[DM]';
     const channelTag = msg.channel.type === 'text' ? `[#${msg.channel.name}]` : '';
