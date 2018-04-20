@@ -11,7 +11,6 @@ const config = require("./config.json");
 // config.token contains the bot's token
 // config.prefix contains the message prefix.
 // Calling Packages
-const Discord = require('discord.js');
 const bot = new Discord.Client();
 const fs = require('fs');
 const db = require('quick.db');
@@ -26,7 +25,7 @@ const commands = JSON.parse(fs.readFileSync('Storage/commands.json', 'utf8'));
 const serverPrefixes = JSON.parse(fs.readFileSync('Storage/serverPrefixes.json', 'utf8'))
 
 // Global Settings
-const prefix = '~'; // This is the prefix, you can change it to whatever you want.
+const prefix = ','; // This is the prefix, you can change it to whatever you want.
 
 // Listener Event: Runs whenever a message is received.
 bot.on('message', message => {
