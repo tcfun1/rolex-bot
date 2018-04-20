@@ -11,6 +11,9 @@ const config = require("./config.json");
 // config.token contains the bot's token
 // config.prefix contains the message prefix.
 
+const sql = require("sqlite");
+sql.open("./score.sqlite");
+
 client.on("ready", () => {
   // This event will run if the bot starts, and logs in, successfully.
   console.log(`Bot has started, with ${client.users.size} users, in ${client.channels.size} channels of ${client.guilds.size} guilds.`); 
@@ -18,11 +21,33 @@ client.on("ready", () => {
   // docs refer to as the "ClientUser".
   client.user.setGame(`on ${client.guilds.size} servers`);
 });
- 
-client.on('message', msg => {
-    const guildTag = msg.channel.type === 'text' ? `[${msg.guild.name}]` : '[DM]';
-    const channelTag = msg.channel.type === 'text' ? `[#${msg.channel.name}]` : '';
-    console.log(`${guildTag}${channelTag} ${msg.author.tag}: ${msg.content}`);
+
+const prefix = ",";
+client.on("message", message => {
+  if (message.author.bot) return;
+  if (message.channel.type !== "text") return;
+
+  if (message.content.startsWith(prefix + "ping")) {
+    message.channel.send("pong!");
+  }
+
+  sql.get(`SELECT * FROM scores WHERE userId ="${message.author.id}"`).then(row => {
+    if (!row) {
+      sql.run("INSERT INTO scores (userId, points, level) VALUES (?, ?, ?)", [message.author.id, 1, 0]);
+    } else {
+      let curLevel = Math.floor(0.1 * Math.sqrt(row.points + 1));
+      if (curLevel > row.level) {
+        row.level = curLevel;
+        sql.run(`UPDATE scores SET points = ${row.points + 1}, level = ${row.level} WHERE userId = ${message.author.id}`);
+        message.reply(`You've leveled up to level **${curLevel}**! Ain't that dandy?`);
+      }
+      sql.run(`UPDATE scores SET points = ${row.points + 1} WHERE userId = ${message.author.id}`);
+    }
+  }).catch(() => {
+    console.error;
+    sql.run("CREATE TABLE IF NOT EXISTS scores (userId TEXT, points INTEGER, level INTEGER)").then(() => {
+      sql.run("INSERT INTO scores (userId, points, level) VALUES (?, ?, ?)", [message.author.id, 1, 0]);
+    });
   });
 
 client.on("guildCreate", guild => {
